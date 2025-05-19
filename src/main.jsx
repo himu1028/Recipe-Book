@@ -9,6 +9,7 @@ import {
 } from "react-router";
 import Root from './Root.jsx';
 import Home from './Home.jsx';
+import Error from './Error.jsx';
 
 
 
@@ -23,8 +24,8 @@ const router = createBrowserRouter([
       { index: true,
      Component: Home},
 
-      // { path: "/",
-      // Component: About },
+      { path: "*",
+      Component: Error },
 
     ]}])
 
