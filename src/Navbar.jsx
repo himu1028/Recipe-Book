@@ -49,10 +49,10 @@ const Navbar = () => {
   </div>
   <div className="navbar-end gap-2">
    <NavLink to={"/register"}>
-     <a className="btn btn-success">Registration</a>
+     <button className="btn btn-success">Registration</button>
    </NavLink>
     <NavLink to={"/login"}>
-      <a className="btn btn-accent">Log In</a>
+      <button className="btn btn-accent">Log In</button>
     </NavLink>
   </div>
 </div> 

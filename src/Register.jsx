@@ -1,7 +1,38 @@
-import React from 'react';
+import React, { use } from 'react';
 import { Link } from 'react-router';
+import { AuthContext } from './Context/AuthContext';
 
 const Register = () => {
+
+const { createUser} = use(AuthContext)
+
+
+const handleRegister= e =>{
+e.preventDefault();
+const name = e.target.name.value;
+const email = e.target.email.value;
+const photo = e.target.photo.value;
+const password = e.target.password.value;
+
+const profile = {name,email,photo,password}
+console.log(profile)
+
+// Create user
+createUser(email,password)
+.then(result =>{
+  console.log(result)
+})
+.catch(error =>{
+  console.log(error)
+})
+}
+
+
+
+
+
+
+
     return (
         <>
             <div className="min-h-screen flex items-center justify-center bg-gray-100 p-4">
@@ -10,7 +41,7 @@ const Register = () => {
           Please Register
         </h2>
 
-        <form className="space-y-4">
+        <form onSubmit={handleRegister} className="space-y-4">
           
           <div>
             <label className="block text-gray-700 font-medium mb-1" htmlFor="name">
@@ -18,6 +49,7 @@ const Register = () => {
             </label>
             <input
               type="text"
+              name="name"
               id="name"
               className="w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
               placeholder="Your Name"
@@ -31,6 +63,7 @@ const Register = () => {
             </label>
             <input
               type="email"
+              name="email"
               id="email"
               className="w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
               placeholder="Your Email"
@@ -44,6 +77,7 @@ const Register = () => {
             </label>
             <input
               type="text"
+              name="photo"
               id="photo"
               className="w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
               placeholder="Link to your photo"
@@ -57,6 +91,7 @@ const Register = () => {
             </label>
             <input
               type="password"
+              name="password"
               id="password"
               className="w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
               placeholder="Your Password"
