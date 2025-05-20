@@ -16,6 +16,7 @@ import AuthProvider from './Context/AuthProvider.jsx';
 import MyProfile from './MyProfile.jsx';
 import AddRecipe from './AddRecipe.jsx';
 import AllRecipe from './AllRecipe.jsx';
+import Details from './Details.jsx';
 
 
 
@@ -47,6 +48,14 @@ const router = createBrowserRouter([
 
       { path: "/all",
       Component: AllRecipe },
+
+      { path: "/top/:id",
+      Component: Details,
+      loader: ({ params }) => fetch(`http://localhost:3000/top/${params.id}`)
+
+    },
+
+      
 
     ]}])
 
