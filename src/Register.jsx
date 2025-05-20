@@ -1,32 +1,75 @@
-import React, { use } from 'react';
-import { Link } from 'react-router';
+import React, { use, useState } from 'react';
+// import Link from 'react-router';
+import { Link, useNavigate } from "react-router";
 import { AuthContext } from './Context/AuthContext';
+import Swal from 'sweetalert2';
+import { updateProfile } from 'firebase/auth';
 
 const Register = () => {
 
 const { createUser} = use(AuthContext)
+const navigate = useNavigate()
+const [error,setError]=useState('')
 
 
-const handleRegister= e =>{
-e.preventDefault();
-const name = e.target.name.value;
-const email = e.target.email.value;
-const photo = e.target.photo.value;
-const password = e.target.password.value;
+const handleRegister = (e) => {
+  e.preventDefault();
+  setError(""); // Clear previous error
 
-const profile = {name,email,photo,password}
-console.log(profile)
+  const name = e.target.name.value;
+  const email = e.target.email.value;
+  const photo = e.target.photo.value;
+  const password = e.target.password.value;
 
-// Create user
-createUser(email,password)
-.then(result =>{
-  console.log(result)
+  // Password Validations
+  if (!/[A-Z]/.test(password)) {
+    setError("Password must contain at least one uppercase letter.");
+    return;
+  }
+
+  if (!/[a-z]/.test(password)) {
+    setError("Password must contain at least one lowercase letter.");
+    return;
+  }
+
+  if (password.length < 6) {
+    setError("Password must be at least 6 characters long.");
+    return;
+  }
+
+  const profile = { name, email, photo, password };
+  console.log(profile);
+
+  // Create user
+  createUser(email, password)
+.then((userCredential)=>{
+  const user = userCredential.user;
+
+  updateProfile(user,{
+    displayName:name,
+    photoURL:photo,
+  })
 })
-.catch(error =>{
-  console.log(error)
-})
-}
 
+
+    .then((result) => {
+      Swal.fire({
+        position: "top-end",
+        icon: "success",
+        title: "You Have Successfully Registered",
+        showConfirmButton: false,
+        timer: 1500,
+        timerProgressBar: true,
+      }).then(() => {
+        navigate("/");
+      });
+      console.log(result);
+    })
+    .catch((error) => {
+       Swal.fire("please try again !");
+      console.log(error);
+    });
+};
 
 
 
@@ -98,10 +141,12 @@ createUser(email,password)
             />
           </div>
 
-
+{
+  error && (<p className='text-red-500 text-sm mt-1'> {error}</p>)
+}
 
   <button  
-  className="w-full bg-blue-600 text-white py-2 rounded-lg hover:bg-blue-700 transition"
+  className="w-full bg-blue-600 cursor-pointer text-white py-2 rounded-lg hover:bg-blue-700 transition"
           >     Register
           </button>
         </form>
@@ -114,6 +159,9 @@ createUser(email,password)
         </p>
       </div>
     </div>
+
+
+
         </>
     );
 };

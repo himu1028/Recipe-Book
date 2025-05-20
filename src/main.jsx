@@ -13,6 +13,9 @@ import Error from './Error.jsx';
 import Login from './Login.jsx';
 import Register from './Register.jsx';
 import AuthProvider from './Context/AuthProvider.jsx';
+import MyProfile from './MyProfile.jsx';
+import AddRecipe from './AddRecipe.jsx';
+import AllRecipe from './AllRecipe.jsx';
 
 
 
@@ -35,6 +38,15 @@ const router = createBrowserRouter([
 
       { path: "/register",
       Component: Register },
+
+      { path: "/profile",
+      Component: MyProfile },
+
+      { path: "/add",
+      Component: AddRecipe },
+
+      { path: "/all",
+      Component: AllRecipe },
 
     ]}])
 

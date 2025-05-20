@@ -1,10 +1,14 @@
 import React, { use } from 'react';
-import { Link } from 'react-router';
+import { Link, useNavigate } from 'react-router';
 import { AuthContext } from './Context/AuthContext';
+import Swal from 'sweetalert2';
 
 const Login = () => {
 const { SignInUser,user} = use(AuthContext)
 console.log(user)
+const navigate = useNavigate()
+
+
 
 const handleLogIn= e =>{
 e.preventDefault();
@@ -17,9 +21,11 @@ console.log(profile2)
 // Create user
 SignInUser(email,password)
 .then(result =>{
+  navigate("/");
   console.log(result)
 })
 .catch(error =>{
+  Swal.fire("Email or Password is incorrrect !");
   console.log(error)
 })
 }
