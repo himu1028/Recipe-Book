@@ -27,7 +27,7 @@ const AllRecipe = () => {
     <p className='font-bold text-xl'>{singRecipe.
 cuisineType}</p>
     <div className="card-actions justify-between mt-2">
-      <button className="badge font-bold  cursor-pointer   text-3xl mt-1"><AiFillLike /></button>
+      <button className="badge font-bold  cursor-pointer   text-3xl mt-1"><AiFillLike />{singRecipe.likes}</button>
       <Link to={`/top/${singRecipe._id}`}>
       <button className=" font-bold cursor-pointer btn btn-accent">See Details</button>
       </Link>

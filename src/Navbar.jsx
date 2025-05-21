@@ -7,7 +7,7 @@ const Navbar = () => {
   console.log(user)
     return (
         <>
-           <div className="navbar bg-base-100 w-11/12 mx-auto shadow-sm mt-1">
+           <div className="navbar bg-gray-300 w-11/12 mx-auto shadow-sm mt-1 rounded-lg">
   <div className="navbar-start">
     <div className="dropdown">
       <div tabIndex={0} role="button" className="btn btn-ghost lg:hidden">
@@ -60,7 +60,7 @@ const Navbar = () => {
   {
     user ? <>
     
-    <div className='ml-60 '>
+    <div className='ml-60 mr-3'>
       <Link to={'/profile'}>
    <div className="avatar">
   <div className="ring-primary ring-offset-base-100 w-14 rounded-full ring-2 ring-offset-2">
