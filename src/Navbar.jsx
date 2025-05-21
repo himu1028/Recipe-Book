@@ -16,23 +16,25 @@ const Navbar = () => {
       <ul
         tabIndex={0}
         className="menu menu-sm dropdown-content bg-base-100 rounded-box z-1 mt-3 w-52 p-2 shadow">
-        <NavLink>
+        <NavLink to={"/"}>
             <button className='btn btn-outline font-bold'>Home</button>
         </NavLink>
-      <NavLink>
+      <NavLink to={"add"}>
             <button className='btn btn-outline font-bold'>Add Recipe</button>
         </NavLink>
-      <NavLink>
+      <NavLink to={"myReci"}>
             <button className='btn btn-outline font-bold'>My Recipe</button>
         </NavLink>
-      <NavLink>
+      <NavLink to={"all"}>
             <button className='btn btn-outline font-bold'>All Recipe</button>
         </NavLink>
         
         
       </ul>
     </div>
-    <a className="btn btn-ghost text-xl">Recipe Book</a>
+   <Link to={"/"}>
+     <a className="btn btn-ghost text-xl">Recipe Book</a>
+   </Link>
   </div>
   <div className="navbar-center mr-42  hidden  lg:flex justify-center">
     <div className="menu menu-horizontal gap-4 px-1">
@@ -42,7 +44,7 @@ const Navbar = () => {
       <NavLink to={"/add"}>
             <button className='btn btn-outline font-bold'>Add Recipe</button>
         </NavLink>
-      <NavLink>
+      <NavLink to={'/myReci'}>
             <button className='btn btn-outline font-bold'>My Recipe</button>
         </NavLink>
       <NavLink to={'/all'}>

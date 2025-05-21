@@ -17,6 +17,8 @@ import MyProfile from './MyProfile.jsx';
 import AddRecipe from './AddRecipe.jsx';
 import AllRecipe from './AllRecipe.jsx';
 import Details from './Details.jsx';
+import MyRecipe from './MyRecipe.jsx';
+import PrivateRout from './Routes/PrivateRout.jsx';
 
 
 
@@ -44,10 +46,19 @@ const router = createBrowserRouter([
       Component: MyProfile },
 
       { path: "/add",
-      Component: AddRecipe },
+      
+      element:<PrivateRout><AddRecipe></AddRecipe></PrivateRout>
+    },
+
+      { path: "/myReci",
+      
+       element:<PrivateRout><MyRecipe></MyRecipe></PrivateRout>
+     },
 
       { path: "/all",
-      Component: AllRecipe },
+      Component: AllRecipe ,
+      loader: ()=> fetch('http://localhost:3000/tops')
+    },
 
       { path: "/top/:id",
       Component: Details,
