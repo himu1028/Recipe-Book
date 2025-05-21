@@ -1,5 +1,7 @@
 import React, { use } from 'react';
 import { AuthContext } from './Context/AuthContext';
+import Swal from 'sweetalert2';
+import { Navigate } from 'react-router';
 
 const AddRecipe = () => {
 const { user} = use(AuthContext)
@@ -30,6 +32,8 @@ fetch('http://localhost:3000/top',{
 .then(res => res.json())
 .then(data =>{
   console.log('after post',data)
+  Swal.fire("Successfully Added")
+  Navigate("/myReci");
 })
 
 }
@@ -45,33 +49,33 @@ fetch('http://localhost:3000/top',{
       <h2 className="text-2xl font-bold mb-6 text-center">Add New Recipe</h2>
       
       <form onSubmit={handleAdd} className="space-y-4">
-        {/* Image URL */}
+        
         <div>
           <label className="block font-semibold mb-1">Image URL</label>
           <input type="text" name='image' placeholder="Enter image URL"
             className="input input-bordered w-full" />
         </div>
 
-        {/* Title */}
+        
         <div>
           <label className="block font-semibold mb-1">Title</label>
           <input type="text" name='title' placeholder="Write Recipe Title"
             className="input input-bordered w-full" />
         </div>
 
-        {/* Ingredients */}
+       
         <div>
           <label className="block font-semibold mb-1">Ingredients</label>
           <textarea name='ingredients' className="textarea textarea-bordered w-full" placeholder="Write your ingredients..."></textarea>
         </div>
 
-        {/* Instructions */}
+        
         <div>
           <label className="block font-semibold mb-1">Instructions</label>
           <input name='instruction' className="textarea textarea-bordered w-full" placeholder="Write Cooking instructions"></input>
         </div>
 
-        {/* Cuisine Type*/}
+        
         <div>
           <label className="block font-semibold mb-1">Cuisine Type</label>
            <select name='cuisine' className="select select-bordered w-full">
@@ -83,15 +87,15 @@ fetch('http://localhost:3000/top',{
           </select>
         </div>
 
-        {/* Preparation */}
+       
         <div>
           <label className="block  font-semibold mb-1">Preparation Time (minutes)</label>
           <input type="number" name='number' className="border-2 w-full" />
         </div>
 
-        {/* Categories */}
+       
         <div>
-          <label className="block font-semibold mb-1">Categories</label>
+          <label name='category' className="block font-semibold mb-1">Categories</label>
           <div className="flex flex-wrap gap-4">
             {['Breakfast', 'Lunch', 'Dinner', 'Dessert', 'Vegan'].map(cat => (
               <label key={cat} className="flex items-center gap-2">
@@ -102,13 +106,13 @@ fetch('http://localhost:3000/top',{
           </div>
         </div>
 
-        {/* Like */}
+        
         <div>
           <label className="block font-semibold mb-1">Like Count</label>
           <input type="number" name="like" value="0" readOnly className="input input-bordered w-full bg-gray-100" />
         </div>
 
-        {/* Submit */}
+        
         <div className="text-center pt-4">
           <button className="btn btn-primary w-full">Add Recipe</button>
         </div>
