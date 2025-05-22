@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { Link, useLoaderData } from 'react-router';
 import { AiFillLike } from "react-icons/ai";
 import { Typewriter } from 'react-simple-typewriter';
@@ -8,6 +8,18 @@ import { Tooltip } from 'react-tooltip'
 const AllRecipe = () => {
     const AllRecipe = useLoaderData();
     console.log(AllRecipe)
+    const [filter,setFilter]=useState(AllRecipe)
+    console.log(filter)
+
+const handleSortClick = async(cuisineType)=>{
+  const res = await fetch (`http://localhost:3000/topsF?cuisineType=${cuisineType}`);
+  const data = await res.json()
+  setFilter(data)
+}
+
+
+
+
     return (
         <>
           <div className='bg-gray-300 w-11/12 mx-auto pb-5 pt-2 mt-3 px-5 rounded-lg'>
@@ -26,15 +38,15 @@ const AllRecipe = () => {
 </div>
 
 {/* Dropdown */}
-<div className='ml-150 my-5'>
+<div className='ml-135 my-5'>
    <div className="dropdown text-center dropdown-bottom dropdown-center">
-  <div tabIndex={0} role="button" className="btn text-3xl m-1 py-4">Filter by cuisine ⬇️</div>
+  <div tabIndex={0} role="button" className="btn text-2xl m-1 py-4">Filter by cuisine ⬇️</div>
   <ul tabIndex={0} className="dropdown-content menu bg-base-100 rounded-box z-1 w-52 p-2 shadow-sm">
-    <li><a>Italian</a></li>
-    <li><a>Mexican</a></li>
-    <li><a>Indian</a></li>
-    <li><a>American</a></li>
-    <li><a>Chinese</a></li>
+    <li><a onClick={()=>handleSortClick("Italian")}>Italian</a></li>
+    <li><a onClick={()=>handleSortClick("Mexican")}>Mexican</a></li>
+    <li><a onClick={()=>handleSortClick("Indian")}>Indian</a></li>
+    <li><a onClick={()=>handleSortClick("American")}>American</a></li>
+    <li><a onClick={()=>handleSortClick("Chinese")}>Chinese</a></li>
   </ul>
 </div>
 </div>
@@ -42,14 +54,14 @@ const AllRecipe = () => {
 
   <div className='w-11/12 mx-auto grid grid-cols-4 gap-5'>
     {
-        AllRecipe.map(singRecipe =>(
+        filter.map(singRecipe =>(
 
   
     <div key={singRecipe._id} className="card bg-base-100  shadow-sm w-70 h-[90%]">
   <figure>
     <img
-    className='w-98 h-[100%]'
-      src={singRecipe.image || singRecipe.photo || "https://i.ibb.co/vCzbmLwB/hhh.jpg"}
+    className='w-98 h-[100%] '
+      src={singRecipe.image ||  "https://i.ibb.co/vCzbmLwB/hhh.jpg"}
       alt="Recipe" />
   </figure>
   <div className="card-body">

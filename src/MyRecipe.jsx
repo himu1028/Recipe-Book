@@ -73,7 +73,7 @@ const MyRecipe = () => {
               <figure>
                 <img
                   
-                  src={recipe.photo || "https://i.ibb.co/vCzbmLwB/hhh.jpg"}
+                  src={recipe.image || "https://i.ibb.co/vCzbmLwB/hhh.jpg"}
                   alt="Recipe" />
               </figure>
               <div className="card-body">

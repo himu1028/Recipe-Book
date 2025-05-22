@@ -32,8 +32,8 @@ const Navbar = () => {
         
       </ul>
     </div>
-   <Link to={"/"}>
-     <a className="btn btn-ghost text-xl">Recipe Book</a>
+   <Link className='btn btn-ghost text-xl' to={"/"}>
+     Recipe Book
    </Link>
   </div>
   <div className="navbar-center mr-42  hidden  lg:flex justify-center">

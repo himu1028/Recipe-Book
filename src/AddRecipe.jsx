@@ -9,7 +9,7 @@ const email =user?.email
 
 const handleAdd = e => {
   e.preventDefault();
-const photo = e.target.image.value
+const image = e.target.image.value
 const title = e.target.title.value
 const ingredients = e.target.ingredients.value
 const instruction = e.target.instruction.value
@@ -18,7 +18,7 @@ const like = e.target.like.value
 const category = e.target.category.value
 const time = e.target.number.value
 
-const form = {photo,title,ingredients,instruction,cuisine,like,category,time,email}
+const form = {image,title,ingredients,instruction,cuisine,like,category,time,email}
 
 console.log(form)
 // Send data to db
