@@ -25,18 +25,18 @@ console.log(top)
         top.map(topCard =>(
 
   
-    <div key={topCard._id} className="card bg-base-100 w-96 shadow-sm ">
+    <div key={topCard._id} className="card bg-base-100 w-98 h-[90%]  shadow-sm ">
   <figure>
-    <img
-      src="https://img.daisyui.com/images/stock/photo-1606107557195-0e29a4b5b4aa.webp"
-      alt="Shoes" />
+    <img className='w-98'
+      src={topCard.image}
+      alt="Recipe" />
   </figure>
   <div className="card-body ">
-    <h2 className="card-title">
+    <h2 className="card-title text-amber-900 text-2xl font-bold">
       {topCard.title}
-      <div className="badge badge-secondary">NEW</div>
+      <div className="badge badge-secondary">TOP</div>
     </h2>
-    <p className='font-bold text-xl'>{topCard.
+    <p className=' text-xl'>Cuisine Type: {topCard.
 cuisineType}</p>
     <div className="card-actions justify-between mt-2">
       <button className="badge font-bold  cursor-pointer   text-3xl mt-1"><AiFillLike />{topCard.likes}</button>
