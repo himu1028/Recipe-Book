@@ -1,6 +1,9 @@
 import React, { useEffect, useState } from 'react';
 import { AiFillLike } from "react-icons/ai";
 import { Link } from 'react-router';
+import { Typewriter } from 'react-simple-typewriter'
+
+
 const TopRecipes = () => {
 
 const [top,setTop]=useState([]);
@@ -19,7 +22,20 @@ console.log(top)
     return (
         <>
         <div className='bg-gray-300 w-11/12 mx-auto mt-3 rounded-lg'>
-          <h2 className="text-5xl pt-10 font-bold my-4 text-center text-purple-700">Top Recipes</h2>
+          {/* <h2 className="text-5xl pt-10 font-bold my-4 text-center text-purple-700">Top Recipes</h2> */}
+<div className="text-5xl pt-10 my-4 text-center text-purple-700 font-bold">
+      <Typewriter
+        words={['Top Recipe', 'Welcome to Top Recipe!', 'Top Recipe']}
+        loop={5}
+        cursor
+        cursorStyle='|'
+        typeSpeed={70}
+        deleteSpeed={50}
+        delaySpeed={1000}
+  />
+</div>
+
+
     <div className='grid grid-cols-3 pl-14  gap-y-5 py-5'>
         {
         top.map(topCard =>(
