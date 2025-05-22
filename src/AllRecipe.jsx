@@ -2,6 +2,9 @@ import React from 'react';
 import { Link, useLoaderData } from 'react-router';
 import { AiFillLike } from "react-icons/ai";
 import { Typewriter } from 'react-simple-typewriter';
+import 'react-tooltip/dist/react-tooltip.css'
+import { Tooltip } from 'react-tooltip'
+
 const AllRecipe = () => {
     const AllRecipe = useLoaderData();
     console.log(AllRecipe)
@@ -20,6 +23,20 @@ const AllRecipe = () => {
         deleteSpeed={50}
         delaySpeed={1000}
   />
+</div>
+
+{/* Dropdown */}
+<div className='ml-150 my-5'>
+   <div className="dropdown text-center dropdown-bottom dropdown-center">
+  <div tabIndex={0} role="button" className="btn text-3xl m-1 py-4">Filter by cuisine ⬇️</div>
+  <ul tabIndex={0} className="dropdown-content menu bg-base-100 rounded-box z-1 w-52 p-2 shadow-sm">
+    <li><a>Italian</a></li>
+    <li><a>Mexican</a></li>
+    <li><a>Indian</a></li>
+    <li><a>American</a></li>
+    <li><a>Chinese</a></li>
+  </ul>
+</div>
 </div>
 
 
@@ -45,9 +62,17 @@ const AllRecipe = () => {
     <p className=' text-xl'>Cuisine Type: {singRecipe.
 cuisineType || singRecipe.cuisine}</p>
     <div className="card-actions justify-between mt-2">
-      <button className="badge font-bold  cursor-pointer   text-3xl mt-1"><AiFillLike />{singRecipe.likes}</button>
+      <button 
+       data-tooltip-id="like-tooltip" 
+      data-tooltip-content="Total Likes"
+      className="badge font-bold  cursor-pointer   text-3xl mt-1"><AiFillLike />{singRecipe.likes}</button>
+      <Tooltip id="like-tooltip"/>
       <Link to={`/top/${singRecipe._id}`}>
-      <button className=" font-bold cursor-pointer btn btn-accent">See Details</button>
+      <button 
+       data-tooltip-id="like-tooltip" 
+         data-tooltip-content="You can see details"
+      className=" font-bold cursor-pointer btn btn-accent">See Details</button>
+      <Tooltip id="like-tooltip"/>
       </Link>
     </div>
   </div>

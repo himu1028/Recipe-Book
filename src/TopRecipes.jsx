@@ -2,8 +2,8 @@ import React, { useEffect, useState } from 'react';
 import { AiFillLike } from "react-icons/ai";
 import { Link } from 'react-router';
 import { Typewriter } from 'react-simple-typewriter'
-
-
+import 'react-tooltip/dist/react-tooltip.css'
+import { Tooltip } from 'react-tooltip'
 const TopRecipes = () => {
 
 const [top,setTop]=useState([]);
@@ -55,9 +55,23 @@ console.log(top)
     <p className=' text-xl'>Cuisine Type: {topCard.
 cuisineType}</p>
     <div className="card-actions justify-between mt-2">
-      <button className="badge font-bold  cursor-pointer   text-3xl mt-1"><AiFillLike />{topCard.likes}</button>
+
+      <button 
+      data-tooltip-id="like-tooltip" 
+      data-tooltip-content="Total Likes"
+      className="badge font-bold  cursor-pointer text-3xl mt-1"><AiFillLike />{topCard.likes}</button>
+      <Tooltip id="like-tooltip"/>
+
       <Link to={`/top/${topCard._id}`}>
-      <button className=" font-bold cursor-pointer btn btn-accent">See Details</button>
+
+      <button 
+        data-tooltip-id="like-tooltip" 
+         data-tooltip-content="You can see details"
+      className=" font-bold cursor-pointer btn btn-accent">See Details</button>
+     <Tooltip id="like-tooltip"/>
+   
+
+
       </Link>
     </div>
   </div>
@@ -68,7 +82,11 @@ cuisineType}</p>
     </div>
     <div className='text-center my-4 pb-6'>
        <Link to={"/all"}>
-        <button className='text-center p-6 btn btn-primary text-2xl'>Show All Recipe</button>
+        <button 
+         data-tooltip-id="like-tooltip" 
+         data-tooltip-content="You can see details"
+        className='text-center p-6 btn btn-primary text-2xl'>Show All Recipe</button>
+        <Tooltip id="like-tooltip"/>
        </Link>
     </div>
         </div>

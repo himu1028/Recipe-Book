@@ -2,6 +2,8 @@ import React, { use, useEffect, useState } from 'react';
 import { AuthContext } from './Context/AuthContext';
 import { AiFillLike } from "react-icons/ai";
 import { Link } from 'react-router';
+import 'react-tooltip/dist/react-tooltip.css'
+import { Tooltip } from 'react-tooltip'
 
 const MyRecipe = () => {
   const { user } = use(AuthContext);
@@ -85,18 +87,30 @@ const MyRecipe = () => {
                 <p className=' text-xl'><span className='font-bold'>Preparation time</span>  (Min): {recipe.time}</p>
 
                 <div className="card-actions justify-between mt-2">
-                  <button className="badge font-bold cursor-pointer text-3xl mt-1"><AiFillLike />{recipe.likes}</button>
+                  <button 
+                   data-tooltip-id="like-tooltip" 
+      data-tooltip-content="Total Likes"
+                  className="badge font-bold cursor-pointer text-3xl mt-1"><AiFillLike />{recipe.likes}</button>
+                   <Tooltip id="like-tooltip"/>
 
-                  <button className="btn btn-accent"
+                  <button 
+                  data-tooltip-id="like-tooltip" 
+      data-tooltip-content="Update Recipe"
+                  className="btn btn-accent"
                     onClick={() => {
                       setSelectedRecipe(recipe);
                       document.getElementById('my_modal_4').showModal();
                     }}>
                     Update
                   </button>
+                  <Tooltip id="like-tooltip"/>
 
                   <Link>
-                    <button onClick={() => handleDelete(recipe._id)} className="font-bold cursor-pointer btn btn-accent">Delete</button>
+                    <button 
+                    data-tooltip-id="like-tooltip" 
+      data-tooltip-content="Remove it"
+                    onClick={() => handleDelete(recipe._id)} className="font-bold cursor-pointer btn btn-accent">Delete</button>
+                    <Tooltip id="like-tooltip"/>
                   </Link>
                 </div>
               </div>
